@@ -1,0 +1,119 @@
+{% extends 'portal/base.html' %}
+{% block page_title %}Security Deposit & FDR Management{% endblock %}
+{% block shell %}
+<header class="public-header">
+  <div class="public-container public-header-inner">
+    <a class="public-brand" href="{% url 'portal:home' %}" aria-label="FDR Streamline home">
+      <span class="public-brand-mark">{% include 'portal/partials/icon.html' with name='shield' %}</span>
+      <span class="public-brand-name">FDR<span>STREAMLINE</span></span>
+    </a>
+    <nav class="public-nav" aria-label="Main navigation">
+      <a class="public-nav-link" href="#capabilities">Capabilities</a>
+      <a class="public-nav-link" href="#workflow">How it works</a>
+      <a class="public-signin" href="{% url 'login' %}">Sign in <span>{% include 'portal/partials/icon.html' with name='arrow' %}</span></a>
+    </nav>
+  </div>
+</header>
+
+<main class="public-home" id="main-content" tabindex="-1">
+  <section class="public-hero" aria-labelledby="hero-title">
+    <div class="public-container public-hero-grid">
+      <div class="public-hero-copy">
+        <div class="public-eyebrow"><span></span> AICTE · REGULATION BUREAU</div>
+        <h1 id="hero-title">A clearer view of every <em>security deposit.</em></h1>
+        <p class="public-hero-lede">One accountable workspace for institutions and regulators to submit, review, verify, and track security deposits and fixed deposit receipts.</p>
+        <div class="public-hero-actions">
+          <a class="public-button" href="{% url 'login' %}">Sign in to your workspace {% include 'portal/partials/icon.html' with name='arrow' %}</a>
+          <a class="public-text-link" href="#workflow">Explore the workflow <span aria-hidden="true">↓</span></a>
+        </div>
+        <div class="public-hero-assurance">
+          <span class="public-assurance-icon">{% include 'portal/partials/icon.html' with name='lock' %}</span>
+          <span>Institution-scoped access <i></i> Recorded reviews and decisions</span>
+        </div>
+      </div>
+
+      <div class="public-hero-visual">
+        <div class="public-orbit public-orbit-one"></div>
+        <div class="public-orbit public-orbit-two"></div>
+        <div class="public-preview" aria-label="Illustrative portal workflow preview">
+          <div class="public-preview-chrome">
+            <span class="preview-lights" aria-hidden="true"><i></i><i></i><i></i></span>
+            <span class="preview-chrome-title">REGULATION WORKSPACE</span>
+            <span class="preview-tag">ILLUSTRATIVE</span>
+          </div>
+          <div class="public-preview-body">
+            <div class="preview-heading">
+              <div><span>RECORD LIFECYCLE</span><h2>From submission to release</h2></div>
+              <span class="preview-shield">{% include 'portal/partials/icon.html' with name='shield' %}</span>
+            </div>
+            <ol class="preview-steps">
+              <li><span class="preview-step-number">01</span><span class="preview-step-icon">{% include 'portal/partials/icon.html' with name='upload' %}</span><span class="preview-step-copy"><strong>Institution submission</strong><small>Details and supporting evidence</small></span></li>
+              <li><span class="preview-step-number">02</span><span class="preview-step-icon">{% include 'portal/partials/icon.html' with name='search' %}</span><span class="preview-step-copy"><strong>Independent verification</strong><small>Evidence and recorded findings</small></span></li>
+              <li><span class="preview-step-number">03</span><span class="preview-step-icon">{% include 'portal/partials/icon.html' with name='shield' %}</span><span class="preview-step-copy"><strong>Authorized decision</strong><small>Review and approval roles</small></span></li>
+              <li><span class="preview-step-number">04</span><span class="preview-step-icon">{% include 'portal/partials/icon.html' with name='arrow' %}</span><span class="preview-step-copy"><strong>Release completion</strong><small>External execution recorded</small></span></li>
+            </ol>
+            <div class="preview-footnote">{% include 'portal/partials/icon.html' with name='clock' %}<span>Deadlines and next actions stay visible with each record.</span></div>
+          </div>
+        </div>
+        <div class="public-preview-note"><span>{% include 'portal/partials/icon.html' with name='document' %}</span><div><strong>A traceable record</strong><small>Evidence · review · decision</small></div><span class="preview-note-check">{% include 'portal/partials/icon.html' with name='check' %}</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="public-capabilities" id="capabilities" aria-labelledby="capabilities-title">
+    <div class="public-container">
+      <div class="public-section-heading">
+        <div><div class="public-eyebrow public-eyebrow-light">ONE WORKSPACE. CLEAR RESPONSIBILITY.</div><h2 id="capabilities-title">Make every handoff easier to follow.</h2></div>
+        <p>Keep submissions, checks, and decisions together, with a clear path from the first record to its final outcome.</p>
+      </div>
+      <div class="public-feature-grid">
+        <article class="public-feature-card">
+          <div class="public-feature-top"><span class="public-feature-icon">{% include 'portal/partials/icon.html' with name='folder' %}</span><span class="public-feature-index">01 / SUBMIT</span></div>
+          <h3>Keep submissions complete.</h3>
+          <p>Bring instrument details, policy requirements, and supporting documents into one institution-wise register.</p>
+          <a href="{% url 'login' %}" aria-label="Sign in to submit records">Explore the register <span>{% include 'portal/partials/icon.html' with name='arrow' %}</span></a>
+        </article>
+        <article class="public-feature-card">
+          <div class="public-feature-top"><span class="public-feature-icon">{% include 'portal/partials/icon.html' with name='shield' %}</span><span class="public-feature-index">02 / VERIFY</span></div>
+          <h3>Give reviews clear ownership.</h3>
+          <p>Record independent bank evidence, discrepancies, reviewer findings, and decisions by authorized roles.</p>
+          <a href="{% url 'login' %}" aria-label="Sign in to review records">See the review process <span>{% include 'portal/partials/icon.html' with name='arrow' %}</span></a>
+        </article>
+        <article class="public-feature-card">
+          <div class="public-feature-top"><span class="public-feature-icon">{% include 'portal/partials/icon.html' with name='clock' %}</span><span class="public-feature-index">03 / MONITOR</span></div>
+          <h3>Keep the next step visible.</h3>
+          <p>Follow deadlines, renewals, release requests, notifications, and completion records in one place.</p>
+          <a href="{% url 'login' %}" aria-label="Sign in to monitor records">Explore monitoring <span>{% include 'portal/partials/icon.html' with name='arrow' %}</span></a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="public-workflow" id="workflow" aria-labelledby="workflow-title">
+    <div class="public-container public-workflow-grid">
+      <div class="public-workflow-copy">
+        <div class="public-eyebrow">DESIGNED FOR ACCOUNTABLE REVIEW</div>
+        <h2 id="workflow-title">Every record has a next step.</h2>
+        <p>From institution submission through review and final release, each handoff stays connected to its evidence and history.</p>
+        <a class="public-inline-link" href="{% url 'login' %}">Enter the regulation workspace {% include 'portal/partials/icon.html' with name='arrow' %}</a>
+      </div>
+      <div class="public-assurance-list">
+        <div><span class="assurance-list-icon">{% include 'portal/partials/icon.html' with name='institution' %}</span><span><strong>Scoped to assigned institutions</strong><small>Access follows each user’s role and institution assignments.</small></span><span class="assurance-list-check">{% include 'portal/partials/icon.html' with name='check' %}</span></div>
+        <div><span class="assurance-list-icon">{% include 'portal/partials/icon.html' with name='document' %}</span><span><strong>Evidence kept with the record</strong><small>Private encrypted documents support review and follow-up.</small></span><span class="assurance-list-check">{% include 'portal/partials/icon.html' with name='check' %}</span></div>
+        <div><span class="assurance-list-icon">{% include 'portal/partials/icon.html' with name='clock' %}</span><span><strong>History and deadlines in view</strong><small>Audit activity and timely reminders keep work moving.</small></span><span class="assurance-list-check">{% include 'portal/partials/icon.html' with name='check' %}</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="public-cta" aria-labelledby="cta-title">
+    <div class="public-container public-cta-inner">
+      <div><div class="public-eyebrow">FDR STREAMLINE</div><h2 id="cta-title">Bring every deposit into focus.</h2><p>Sign in to continue to your regulation workspace.</p></div>
+      <a class="public-button public-button-light" href="{% url 'login' %}">Sign in to your workspace {% include 'portal/partials/icon.html' with name='arrow' %}</a>
+    </div>
+  </section>
+</main>
+
+<footer class="public-footer">
+  <div class="public-container public-footer-inner"><a class="public-footer-brand" href="{% url 'portal:home' %}">FDR STREAMLINE</a><span>Security Deposit / FDR Management Portal</span><span>AICTE · Regulation Bureau <i></i> SIH 26265</span></div>
+</footer>
+{% endblock %}

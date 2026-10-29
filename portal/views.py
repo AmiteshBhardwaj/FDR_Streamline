@@ -47,6 +47,11 @@ def show_error(request,exc):
 def audit(user,action,**details):
     AuditEvent.objects.create(actor=user,action=action,details=details)
 
+def landing(request):
+    if request.user.is_authenticated:
+        return redirect('portal:dashboard')
+    return render(request,'portal/landing.html')
+
 @login_required
 def dashboard(request):
     if role(request.user)=='admin': return redirect('portal:administration')

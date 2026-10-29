@@ -3,7 +3,8 @@ from . import views
 
 app_name='portal'
 urlpatterns=[
-    path('',views.dashboard,name='dashboard'),
+    path('',views.landing,name='home'),
+    path('dashboard/',views.dashboard,name='dashboard'),
     path('instruments/',views.instrument_list,name='instruments'),
     path('instruments/new/',views.instrument_new,name='instrument_new'),
     path('instruments/<uuid:pk>/',views.instrument_detail,name='instrument_detail'),

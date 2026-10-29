@@ -64,7 +64,7 @@ class BrowserJourneys(StaticLiveServerTestCase):
         self.page.locator('[name=username]').fill(username)
         self.page.locator('[name=password]').fill('BrowserPass!26265')
         self.page.locator('button[type=submit]').click()
-        self.page.wait_for_url(self.live_server_url+'/')
+        self.page.wait_for_url(self.live_server_url+'/dashboard/')
 
     def upload(self,category):
         form=self.page.locator('form[action$="/documents/"]')
