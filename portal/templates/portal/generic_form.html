@@ -1,0 +1,4 @@
+{% extends 'portal/base.html' %}
+{% block page_title %}{{ title }}{% endblock %}{% block breadcrumb %}{{ title }}{% endblock %}
+{% block title %}{{ title }}{% endblock %}{% block description %}{{ description }}{% endblock %}
+{% block content %}<section class="panel form-panel"><div class="panel-header"><h2>{{ title }}</h2></div><div class="panel-body"><form method="post" enctype="multipart/form-data">{% csrf_token %}{% include 'portal/partials/fields.html' %}<div class="form-actions"><button type="submit" class="button">{{ submit_label|default:'Save changes' }}</button><a href="{% url 'portal:dashboard' %}" class="button button-secondary">Cancel</a></div></form></div></section>{% endblock %}

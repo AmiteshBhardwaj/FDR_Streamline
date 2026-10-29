@@ -1,0 +1,17 @@
+{% extends 'portal/base.html' %}
+{% block page_title %}Sign in{% endblock %}
+{% block shell %}
+<main id="main-content" class="login-page">
+  <section class="login-story" aria-label="About FDR Streamline">
+    <div class="brand"><span class="brand-mark">{% include 'portal/partials/icon.html' with name='shield' %}</span><span>FDR<span class="brand-subtitle">STREAMLINE</span></span></div>
+    <div class="login-story-content"><div class="eyebrow">AICTE · REGULATION BUREAU</div><h1>Clarity at every step.<br><em>Confidence in every record.</em></h1><p>A shared workspace for security deposits and fixed deposit receipts, from first submission to final release.</p><div class="login-feature">{% include 'portal/partials/icon.html' with name='folder' %}One complete, institution-wise register</div><div class="login-feature">{% include 'portal/partials/icon.html' with name='clock' %}Timely reminders. Clear next steps.</div><div class="login-feature">{% include 'portal/partials/icon.html' with name='shield' %}Traceable review and authorized decisions</div></div>
+    <div class="login-story-footer"><span>Security Deposit / FDR Management Portal</span><span>SIH 26265</span></div>
+  </section>
+  <section class="login-main" aria-labelledby="login-title"><div class="login-card"><div class="eyebrow">YOUR REGULATION WORKSPACE</div><h2 id="login-title">Welcome back.</h2><p class="login-intro">Sign in to manage your records and the actions that need your attention.</p>
+    {% if demo_mode %}<div class="login-demo-note"><strong>Demonstration workspace</strong>Records and policy examples are illustrative. Use the demo accounts listed in the project README.</div>{% endif %}
+    {% if messages %}{% for message in messages %}<div class="flash-message {{ message.tags }}">{{ message }}</div>{% endfor %}{% endif %}
+    <form method="post" action="{% url 'login' %}">{% csrf_token %}<input type="hidden" name="next" value="{{ next }}">{% include 'portal/partials/fields.html' %}<button type="button" class="password-toggle" data-toggle-password="id_password" aria-pressed="false">Show password</button><div class="spacer-top"><button class="button" type="submit">Sign in to workspace {% include 'portal/partials/icon.html' with name='arrow' %}</button></div></form>
+    <p class="login-help">Access is provided by your portal administrator.<br>Contact them if you need an account or password reset.</p><div class="login-assurance">{% include 'portal/partials/icon.html' with name='lock' %}Authorized users only · Access is recorded</div>
+  </div></section>
+</main>
+{% endblock %}

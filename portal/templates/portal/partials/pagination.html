@@ -1,0 +1,11 @@
+{% load portal_ui %}
+{% if page_obj.paginator.num_pages > 1 %}
+<nav class="pagination" aria-label="Pagination">
+  <span class="muted">Showing {{ page_obj.start_index }}–{{ page_obj.end_index }} of {{ page_obj.paginator.count }}</span>
+  <div class="pagination-links">
+    {% if page_obj.has_previous %}<a class="button button-secondary button-small" href="?{% page_query page_obj.previous_page_number %}">Previous</a>{% endif %}
+    <span class="page-number">{{ page_obj.number }} / {{ page_obj.paginator.num_pages }}</span>
+    {% if page_obj.has_next %}<a class="button button-secondary button-small" href="?{% page_query page_obj.next_page_number %}">Next</a>{% endif %}
+  </div>
+</nav>
+{% endif %}

@@ -1,0 +1,72 @@
+{% load static portal_ui %}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#142c38">
+  <meta name="description" content="A secure workspace for institution security deposits, FDR verification, renewal and release.">
+  <title>{% block page_title %}Workspace{% endblock %} · FDR Streamline</title>
+  <link rel="stylesheet" href="{% static 'portal/app.css' %}">
+  <script src="{% static 'portal/app.js' %}" defer></script>
+  {% block extra_head %}{% endblock %}
+</head>
+<body>
+<a class="skip-link" href="#main-content">Skip to content</a>
+<svg class="svg-definitions" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <symbol id="icon-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></symbol>
+  <symbol id="icon-folder" viewBox="0 0 24 24"><path d="M3 7a2 2 0 0 1 2-2h5l2 2h7a2 2 0 0 1 2 2v10H3z"/><path d="M3 10h18"/></symbol>
+  <symbol id="icon-bell" viewBox="0 0 24 24"><path d="M6 9a6 6 0 0 1 12 0c0 7 3 7 3 9H3c0-2 3-2 3-9M10 21h4"/></symbol>
+  <symbol id="icon-chart" viewBox="0 0 24 24"><path d="M4 3v17h17M8 15v-4M13 15V7M18 15V4"/></symbol>
+  <symbol id="icon-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+  <symbol id="icon-settings" viewBox="0 0 24 24"><path d="m9 3-1 3-3 1 1 3-2 2 2 2-1 3 3 1 1 3h6l1-3 3-1-1-3 2-2-2-2 1-3-3-1-1-3z"/><circle cx="12" cy="12" r="3"/></symbol>
+  <symbol id="icon-search" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></symbol>
+  <symbol id="icon-arrow" viewBox="0 0 24 24"><path d="M4 12h16m-6-6 6 6-6 6"/></symbol>
+  <symbol id="icon-upload" viewBox="0 0 24 24"><path d="M12 16V3m-5 5 5-5 5 5M4 15v6h16v-6"/></symbol>
+  <symbol id="icon-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
+  <symbol id="icon-alert" viewBox="0 0 24 24"><path d="m12 3 10 18H2zM12 9v5m0 3h.01"/></symbol>
+  <symbol id="icon-institution" viewBox="0 0 24 24"><path d="m3 8 9-5 9 5H3zm0 13h18M6 10v8m6-8v8m6-8v8M3 18h18"/></symbol>
+  <symbol id="icon-lock" viewBox="0 0 24 24"><rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3m-4 5v2"/></symbol>
+  <symbol id="icon-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+  <symbol id="icon-download" viewBox="0 0 24 24"><path d="M12 3v13m-5-5 5 5 5-5M4 16v5h16v-5"/></symbol>
+  <symbol id="icon-document" viewBox="0 0 24 24"><path d="M14 3H5v18h14V8zm0 0v5h5M8 12h8m-8 4h6"/></symbol>
+  <symbol id="icon-shield" viewBox="0 0 24 24"><path d="m12 2 9 4v6c0 5-9 10-9 10S3 17 3 12V6z"/><path d="m8 12 3 3 5-6"/></symbol>
+  <symbol id="icon-logout" viewBox="0 0 24 24"><path d="M9 4H4v16h5m5-13 5 5-5 5m-6-5h12"/></symbol>
+  <symbol id="icon-menu" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></symbol>
+  <symbol id="icon-close" viewBox="0 0 24 24"><path d="m6 6 12 12M6 18 18 6"/></symbol>
+</svg>
+{% block shell %}
+<button class="sidebar-overlay" aria-label="Close navigation" data-close-nav tabindex="-1"></button>
+<aside class="sidebar" id="sidebar" aria-label="Main navigation">
+  <a class="brand" href="{% url 'portal:dashboard' %}"><span class="brand-mark">{% include 'portal/partials/icon.html' with name='shield' %}</span><span>FDR<span class="brand-subtitle">STREAMLINE</span></span></a>
+  <div class="workspace-label">REGULATION WORKSPACE</div>
+  <nav class="nav-list">
+    {% with current=request.resolver_match.url_name %}
+    <a href="{% url 'portal:dashboard' %}" class="nav-link{% if current == 'dashboard' %} active{% endif %}" {% if current == 'dashboard' %}aria-current="page"{% endif %}>{% include 'portal/partials/icon.html' with name='grid' %}<span>Overview</span></a>
+    <a href="{% url 'portal:instruments' %}" class="nav-link{% if current == 'instruments' or current == 'instrument_detail' or current == 'instrument_new' or current == 'instrument_edit' or current == 'renew' %} active{% endif %}">{% include 'portal/partials/icon.html' with name='folder' %}<span>Deposit register</span></a>
+    <a href="{% url 'portal:reports' %}?report=pending" class="nav-link">{% include 'portal/partials/icon.html' with name='shield' %}<span>{% if user_role == 'institution' %}My submissions{% else %}Verification queue{% endif %}</span></a>
+    <a href="{% url 'portal:reports' %}?report=releases" class="nav-link{% if current == 'release_detail' or current == 'release_new' %} active{% endif %}">{% include 'portal/partials/icon.html' with name='arrow' %}<span>Release requests</span></a>
+    <div class="nav-section-label">MONITOR & MANAGE</div>
+    <a href="{% url 'portal:notifications' %}" class="nav-link{% if current == 'notifications' %} active{% endif %}">{% include 'portal/partials/icon.html' with name='bell' %}<span>Notifications</span>{% if unread_count %}<span class="nav-count">{{ unread_count }}</span>{% endif %}</a>
+    <a href="{% url 'portal:reports' %}" class="nav-link{% if current == 'reports' %} active{% endif %}">{% include 'portal/partials/icon.html' with name='chart' %}<span>Reports & insights</span></a>
+    {% if user_role != 'institution' %}<a href="{% url 'portal:audit' %}" class="nav-link{% if current == 'audit' %} active{% endif %}">{% include 'portal/partials/icon.html' with name='clock' %}<span>Audit trail</span></a>{% endif %}
+    {% if user_role == 'institution' %}<a href="{% url 'portal:import_records' %}" class="nav-link{% if current == 'import_records' %} active{% endif %}">{% include 'portal/partials/icon.html' with name='upload' %}<span>Import records</span></a>{% endif %}{% if user_role == 'admin' %}<a href="{% url 'portal:administration' %}" class="nav-link{% if current == 'administration' %} active{% endif %}">{% include 'portal/partials/icon.html' with name='settings' %}<span>Administration</span></a>{% endif %}
+    {% endwith %}
+  </nav>
+  <div class="sidebar-bottom"><div class="sidebar-assurance">{% include 'portal/partials/icon.html' with name='lock' %}<span>Controlled access.<br>Accountable decisions.</span></div><div class="sidebar-organization">AICTE<span>Regulation Bureau</span></div><span class="sidebar-caption">Security Deposit / FDR Portal</span></div>
+</aside>
+<div class="app-shell">
+  <header class="topbar">
+    <div class="topbar-left"><button class="icon-button mobile-menu" data-toggle-nav aria-controls="sidebar" aria-expanded="false" aria-label="Open navigation">{% include 'portal/partials/icon.html' with name='menu' %}</button><span class="topbar-context">Security deposits <span>/</span> <strong>{% block breadcrumb %}Workspace{% endblock %}</strong></span></div>
+    <div class="topbar-actions">{% if demo_mode %}<span class="demo-badge">DEMO WORKSPACE</span>{% endif %}<a class="notification-button icon-button" href="{% url 'portal:notifications' %}" aria-label="Notifications{% if unread_count %}, {{ unread_count }} unread{% endif %}">{% include 'portal/partials/icon.html' with name='bell' %}{% if unread_count %}<span class="notification-dot"></span>{% endif %}</a><div class="user-menu"><a class="avatar" href="{% url 'password_change' %}" aria-label="Account security: change password">{{ request.user|user_name|initials }}</a><span class="user-info"><a href="{% url 'password_change' %}" class="account-link" title="Change your password"><strong>{{ request.user|user_name }}</strong></a><span>{{ user_role|label }}</span></span></div><form method="post" action="{% url 'logout' %}" class="logout-form">{% csrf_token %}<button class="icon-button" title="Sign out" aria-label="Sign out">{% include 'portal/partials/icon.html' with name='logout' %}</button></form></div>
+  </header>
+  <main id="main-content" class="main-content" tabindex="-1">
+    {% if messages %}<div class="messages" aria-live="polite">{% for message in messages %}<div class="flash-message {{ message.tags }}">{% include 'portal/partials/icon.html' with name='alert' %}<span>{{ message }}</span></div>{% endfor %}</div>{% endif %}
+    <div class="page-heading"><div><div class="eyebrow">{% block eyebrow %}SECURITY DEPOSIT MANAGEMENT{% endblock %}</div><h1>{% block title %}Workspace{% endblock %}</h1><p class="page-description">{% block description %}Every deposit. Every decision. In one place.{% endblock %}</p></div><div class="page-actions">{% block page_actions %}{% endblock %}</div></div>
+    {% block content %}{% endblock %}
+    <footer class="page-footer"><span>FDR Streamline <span class="footer-dot">·</span> AICTE Regulation Bureau</span><span>All amounts in INR <span class="footer-dot">·</span> Dates in IST</span></footer>
+  </main>
+</div>
+{% endblock %}
+</body>
+</html>

@@ -1,0 +1,3 @@
+{% extends 'portal/base.html' %}
+{% block page_title %}Access restricted{% endblock %}{% block title %}Access restricted{% endblock %}{% block description %}This action requires a different role or institution assignment.{% endblock %}
+{% block content %}<div class="error-page"><div class="error-number">403</div><h1>This record is outside your access.</h1><p>If you need access for your work, contact your portal administrator. Your current role and institution assignments control the records you can view.</p><a class="button" href="{% url 'portal:dashboard' %}">Return to overview</a></div>{% endblock %}

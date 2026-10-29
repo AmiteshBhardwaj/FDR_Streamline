@@ -1,0 +1,3 @@
+{% extends 'portal/base.html' %}
+{% block page_title %}Record not found{% endblock %}{% block title %}Record not found{% endblock %}{% block description %}The requested page or record could not be found.{% endblock %}
+{% block content %}<div class="error-page"><div class="error-number">404</div><h1>Let’s get you back to your records.</h1><p>The link may be incorrect, or this record may not be available within your assigned workspace.</p><a class="button" href="{% url 'portal:instruments' %}">Open deposit register</a></div>{% endblock %}

@@ -1,0 +1,10 @@
+<div class="form-field{% if field.errors %} has-error{% endif %}{% if field.field.widget.input_type == 'checkbox' and not field.field.widget.allow_multiple_selected %} checkbox-field{% endif %}">
+  {% if field.field.widget.allow_multiple_selected and field.field.widget.input_type == 'checkbox' %}
+  <fieldset class="checkbox-group"><legend>{{ field.label }}{% if field.field.required %}<span class="required" aria-label="required">*</span>{% endif %}</legend>{{ field }}</fieldset>
+  {% else %}
+  <label for="{{ field.id_for_label }}">{{ field.label }}{% if field.field.required %}<span class="required" aria-label="required">*</span>{% endif %}</label>
+  {{ field }}
+  {% endif %}
+  {% if field.help_text %}<div class="help-text" id="{{ field.id_for_label }}_helptext">{{ field.help_text|safe }}</div>{% endif %}
+  {% if field.errors %}<div class="field-errors" role="alert">{{ field.errors }}</div>{% endif %}
+</div>
