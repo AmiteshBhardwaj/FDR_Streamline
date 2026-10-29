@@ -3,6 +3,7 @@ cryptography==50.0.2
 Pillow==13.0.0
 pypdf==6.21.4
 gunicorn==26.2.0
+whitenoise==6.9.0
 psycopg[binary]==3.3.6
 asgiref==3.13.0
 sqlparse==0.6.0
